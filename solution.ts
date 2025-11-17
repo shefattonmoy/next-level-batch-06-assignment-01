@@ -1,4 +1,4 @@
-function formatValue(value: string | number | boolean) {
+const formatValue = (value: string | number | boolean) => {
   if (typeof value === "string") {
     return value.toUpperCase();
   } else if (typeof value === "number") {
@@ -6,9 +6,10 @@ function formatValue(value: string | number | boolean) {
   } else {
     return !value;
   }
-}
+};
 
-function getLength(value: string | any[]): number {
+
+const getLength = (value: string | any[]): number => {
   if (typeof value === "string") {
     return value.length;
   }
@@ -16,7 +17,7 @@ function getLength(value: string | any[]): number {
     return value.length;
   }
   return 0;
-}
+};
 
 class Person {
   name: string;
@@ -27,18 +28,20 @@ class Person {
     this.age = age;
   }
 
-  getDetails(): string {
+  getDetails = (): string => {
     return `Name: ${this.name}, Age: ${this.age}`;
-  }
+  };
 }
 
-function filterByRating(
+
+const filterByRating = (
   items: { title: string; rating: number }[]
-): { title: string; rating: number }[] {
+): { title: string; rating: number }[] => {
   return items.filter((item) => item.rating >= 4);
-}
+};
 
-function filterActiveUsers(
+
+const filterActiveUsers = (
   users: {
     id: number;
     name: string;
@@ -50,9 +53,10 @@ function filterActiveUsers(
   name: string;
   email: string;
   isActive: boolean;
-}[] {
+}[] => {
   return users.filter((user) => user.isActive === true);
-}
+};
+
 
 interface Book {
   title: string;
@@ -61,14 +65,13 @@ interface Book {
   isAvailable: boolean;
 }
 
-function printBookDetails(book: Book): void {
+const printBookDetails = (book: Book): string => {
   const availability = book.isAvailable ? "Yes" : "No";
-  console.log(
-    `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${availability}`
-  );
-}
+  return `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${availability}`;
+};
 
-function getUniqueValues<T>(array1: T[], array2: T[]): T[] {
+
+const getUniqueValues = <T>(array1: T[], array2: T[]): T[] => {
   const uniqueValue: T[] = [];
   const combinedArray = [...array1, ...array2];
 
@@ -88,16 +91,17 @@ function getUniqueValues<T>(array1: T[], array2: T[]): T[] {
   }
 
   return uniqueValue;
-}
+};
 
-function calculateTotalPrice(
+
+const calculateTotalPrice = (
   products: {
     name: string;
     price: number;
     quantity: number;
     discount?: number;
   }[]
-): number {
+): number => {
   return products.reduce((total, product) => {
     let productTotalPrice = product.price * product.quantity;
 
@@ -108,4 +112,4 @@ function calculateTotalPrice(
 
     return total + productTotalPrice;
   }, 0);
-}
+};
