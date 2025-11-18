@@ -72,25 +72,42 @@ const printBookDetails = (book: Book): string => {
 
 
 const getUniqueValues = <T>(array1: T[], array2: T[]): T[] => {
-  const uniqueValue: T[] = [];
-  const combinedArray = [...array1, ...array2];
+  const uniqueValues: T[] = [];
+  const totalLength = array1.length + array2.length;
 
-  for (let i = 0; i < combinedArray.length; i++) {
-    let isDuplicate = false;
+  for (let arrayIndex = 0; arrayIndex < 2; arrayIndex++) {
+    const currentArray = arrayIndex === 0 ? array1 : array2;
 
-    for (let j = 0; j < uniqueValue.length; j++) {
-      if (combinedArray[i] === uniqueValue[j]) {
-        isDuplicate = true;
-        break;
+    for (let i = 0; i < currentArray.length; i++) {
+      let isDuplicate = false;
+
+      for (let j = 0; j < uniqueValues.length; j++) {
+        if (currentArray[i] === uniqueValues[j]) {
+          isDuplicate = true;
+          break;
+        }
       }
-    }
 
-    if (!isDuplicate) {
-      uniqueValue[uniqueValue.length] = combinedArray[i];
+      if (!isDuplicate) {
+        const newLength = uniqueValues.length + 1;
+        const newArray: T[] = new Array(newLength);
+
+        for (let k = 0; k < uniqueValues.length; k++) {
+          newArray[k] = uniqueValues[k];
+        }
+
+        newArray[uniqueValues.length] = currentArray[i];
+        uniqueValues.length = newLength;
+        uniqueValues.length;
+
+        for (let k = 0; k < newArray.length; k++) {
+          uniqueValues[k] = newArray[k];
+        }
+      }
     }
   }
 
-  return uniqueValue;
+  return uniqueValues;
 };
 
 
